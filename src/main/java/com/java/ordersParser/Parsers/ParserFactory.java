@@ -2,6 +2,9 @@ package com.java.ordersParser.Parsers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.java.ordersParser.Parsers.impl.CsvParser;
+import com.java.ordersParser.Parsers.impl.FileParser;
+import com.java.ordersParser.Parsers.impl.JsonParser;
 import com.java.ordersParser.constant.Constants;
 
 public class ParserFactory {

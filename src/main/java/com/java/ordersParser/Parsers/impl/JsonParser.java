@@ -1,4 +1,4 @@
-package com.java.ordersParser.Parsers;
+package com.java.ordersParser.Parsers.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.java.ordersParser.Parsers.Parser;
 import com.java.ordersParser.controller.ParseController;
 import com.java.ordersParser.model.OrderDetail;
 

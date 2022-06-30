@@ -1,4 +1,4 @@
-package com.java.ordersParser.Parsers;
+package com.java.ordersParser.Parsers.impl;
 
 import java.io.BufferedReader;
 import java.nio.file.Files;
@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.java.ordersParser.Parsers.Parser;
 import com.java.ordersParser.controller.ParseController;
 import com.java.ordersParser.model.OrderDetail;
 
