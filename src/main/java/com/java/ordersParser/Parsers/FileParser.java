@@ -1,18 +1,26 @@
-package com.java.test.orders_parser.Parsers;
+package com.java.ordersParser.Parsers;
 
+import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.java.test.orders_parser.controller.ParseController;
-import com.java.test.orders_parser.model.OrderDetail;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.java.ordersParser.controller.ParseController;
+import com.java.ordersParser.model.OrderDetail;
+
+@Component
 public class FileParser implements Parser {
 
+	@Autowired
+	ParseController controller;
+	
 	@Override
-	public void parse(Path path) {
+	public void parseStrategy(Path path, BufferedReader reader) {
 		try {
 			List<String[]> lines = Files.lines(path)
 					.map(x->x.split(","))
@@ -27,12 +35,11 @@ public class FileParser implements Parser {
 				order.setCurrency(words[2].trim());
 				order.setComment(words[3].trim());
 				order.setLine(++number);
-				ParseController.setDefaults(order, number, path.getFileName().toString());
+				controller.setDefaults(order, number, path.getFileName().toString());
 			}
 			
 		} catch (Exception e) {
 			System.out.println("Invalid file: "+path.getFileName().toString());
 		}
 	}
-
 }

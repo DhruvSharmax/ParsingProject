@@ -1,4 +1,4 @@
-package com.java.test.orders_parser.model;
+package com.java.ordersParser.model;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;

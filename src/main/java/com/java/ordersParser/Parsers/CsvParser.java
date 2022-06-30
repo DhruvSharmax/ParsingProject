@@ -1,38 +1,40 @@
-package com.java.test.orders_parser.Parsers;
+package com.java.ordersParser.Parsers;
 
 import java.io.BufferedReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.java.test.orders_parser.controller.ParseController;
-import com.java.test.orders_parser.model.OrderDetail;
+import com.java.ordersParser.controller.ParseController;
+import com.java.ordersParser.model.OrderDetail;
 
+@Component
 public class CsvParser implements Parser {
 
+	@Autowired
+	ParseController controller;
+
 	@Override
-	public void parse(Path path) {
-		try(BufferedReader reader = Files.newBufferedReader(path,StandardCharsets.UTF_8)){
+	public void parseStrategy(Path path, BufferedReader reader) {
+		try {
 			CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader());
 			int number = 0;
-			for(CSVRecord record : csvParser.getRecords()) {
+			for (CSVRecord record : csvParser.getRecords()) {
 				OrderDetail order = new OrderDetail();
 				order.setOrderId(record.get("Order ID"));
 				order.setAmount(record.get("amount"));
 				order.setCurrency(record.get("currency"));
 				order.setComment(record.get("comment"));
 				order.setLine(++number);
-				ParseController.setDefaults(order, number,path.getFileName().toString());
+				controller.setDefaults(order, number, path.getFileName().toString());
 			}
-
-		} catch(Exception e){
-			System.out.println("Invalid file: "+path.getFileName().toString());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-
 }
