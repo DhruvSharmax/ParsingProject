@@ -1,0 +1,4 @@
+[
+  {"orderId":5,"amount":1.23,"comment":"order payment","currency":"USD"},
+  {"orderId":6,"amount":1.24,"comment":"order payment","currency":"EUR"}
+]
