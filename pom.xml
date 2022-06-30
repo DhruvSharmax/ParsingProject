@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.java.test</groupId>
-	<artifactId>orders_parser</artifactId>
+	<artifactId>orders_parser_dhruv</artifactId>
 	<version>1.0</version>
-	<name>orders_parser</name>
+	<name>orders_parser_dhruv</name>
 	<description>Global Fintech - Unlimint</description>
 	<properties>
 		<java.version>1.8</java.version>
